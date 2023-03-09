@@ -45,7 +45,7 @@ select
   end as status,
   case
     when a.path is null then i.title || ' has no unused parameter defined.'
-    else i.title || ' has following unused parameters defined: ' || array_to_string(diff, ', ') || '.'
+    else i.title || ' has following unused parameters defined: ' || array_to_string(a.diff, ', ') || '.'
   end as reason,
   i.path
 from
