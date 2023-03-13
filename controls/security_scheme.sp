@@ -1,5 +1,5 @@
-benchmark "component_security_scheme" {
-  title       = "Component Security Scheme"
+benchmark "security_scheme" {
+  title       = "Security Scheme"
   description = ""
 
   children = [

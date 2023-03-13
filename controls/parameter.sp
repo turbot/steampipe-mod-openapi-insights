@@ -1,5 +1,5 @@
-benchmark "component_parameter" {
-  title       = "Component Parameter"
+benchmark "parameter" {
+  title       = "Parameter"
   description = ""
 
   children = [
