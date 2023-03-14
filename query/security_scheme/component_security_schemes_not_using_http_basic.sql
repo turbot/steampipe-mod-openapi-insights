@@ -1,7 +1,7 @@
 with security_scheme_uses_http_basic as (
   select
     path,
-    array_agg(name) as security_schemes
+    array_agg(key) as security_schemes
   from
     openapi_component_security_scheme
   where

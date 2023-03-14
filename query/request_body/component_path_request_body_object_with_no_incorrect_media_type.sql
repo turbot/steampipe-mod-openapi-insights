@@ -1,7 +1,7 @@
 with component_request_body_with_incorrect_media_type as (
   select
     path,
-    c ->> 'contentType' as content_type
+    concat('components.requestBodies.', key, '.content.', c ->> 'contentType') as paths
   from
     openapi_component_request_body,
     jsonb_array_elements(content) as c
@@ -12,7 +12,7 @@ with component_request_body_with_incorrect_media_type as (
 path_request_body_with_incorrect_media_type as (
   select
     path,
-    c ->> 'contentType' as content_type
+    concat(api_path, '.requestBody.content.', c ->> 'contentType') as paths
   from
     openapi_path_request_body,
     jsonb_array_elements(content) as c
@@ -29,7 +29,7 @@ aggregated_result as (
 group_result_by_path as (
   select
     path,
-    array_agg(content_type) as content_types
+    array_agg(paths) as paths
   from
     aggregated_result
   group by
@@ -43,7 +43,7 @@ select
   end as status,
   case
     when g.path is null then i.title || ' request body has correct media type.'
-    else i.title || ' has following rquest body with incorrect media type: ' || array_to_string(g.content_types, ', ') || '.'
+    else i.title || ' has following rquest body with incorrect media type: ' || array_to_string(g.paths, ', ') || '.'
   end as reason,
   i.path
 from

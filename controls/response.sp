@@ -5,7 +5,8 @@ benchmark "response" {
   children = [
     control.components_response_definition_unused,
     control.path_response_success_response_code_undefined_trace_operation,
-    control.response_content_with_no_unknown_prefix
+    control.response_content_with_no_unknown_prefix,
+    control.component_path_response_content_object_with_no_schema
   ]
 }
 
@@ -28,4 +29,11 @@ control "response_content_with_no_unknown_prefix" {
   description = "The media type prefix should be set as 'application', 'audio', 'font', 'example', 'image', 'message', 'model', 'multipart', 'text' or 'video'."
   severity    = "none"
   sql         = query.response_content_with_no_unknown_prefix.sql
+}
+
+control "component_path_response_content_object_with_no_schema" {
+  title       = "Response object should have schema defined for content"
+  description = "The content object in response should have the attribute 'schema' defined."
+  severity    = "medium"
+  sql         = query.component_path_response_content_object_with_no_schema.sql
 }

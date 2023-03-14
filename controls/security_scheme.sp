@@ -8,8 +8,17 @@ benchmark "security_scheme" {
     control.component_security_schemes_not_using_http_digest,
     control.component_security_schemes_not_using_http_negotiate,
     control.component_security_schemes_not_using_http_unknown_scheme,
-    control.component_security_scheme_not_using_oauth
+    control.component_security_scheme_not_using_oauth,
+    control.component_security_scheme_api_key_not_exposed,
+    control.security_scheme_with_no_invalid_oauth2_token_url
   ]
+}
+
+control "component_security_scheme_api_key_not_exposed" {
+  title       = "API Keys should not be transported over network"
+  description = "API Keys should not be transported over network."
+  severity    = "low"
+  sql         = query.component_security_scheme_api_key_not_exposed.sql
 }
 
 control "component_security_scheme_undefined" {
@@ -52,4 +61,11 @@ control "component_security_schemes_not_using_http_unknown_scheme" {
   description = "Security Scheme HTTP scheme should be registered in the IANA Authentication Scheme registry."
   severity    = "medium"
   sql         = query.component_security_schemes_not_using_http_unknown_scheme.sql
+}
+
+control "security_scheme_with_no_invalid_oauth2_token_url" {
+  title       = "OAuth2 security schema flow tokenUrl must be set with a valid URL"
+  description = "OAuth2 security scheme flow requires a valid URL in the tokenUrl field."
+  severity    = "medium"
+  sql         = query.security_scheme_with_no_invalid_oauth2_token_url.sql
 }
