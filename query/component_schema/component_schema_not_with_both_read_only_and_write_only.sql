@@ -19,7 +19,8 @@ select
   case
     when s.path is null then i.title || ' has no schema defined with both read-only and write-only configured.'
     else i.title || ' has following schema with both read-only and write-only configured: ' || array_to_string(s.schema_names, ', ') || '.'
-  end as reason
+  end as reason,
+  i.path
 from
   openapi_info as i
   left join schema_with_both_read_only_and_write_only as s on i.path = s.path;
