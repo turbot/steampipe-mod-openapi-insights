@@ -1,6 +1,6 @@
 benchmark "header" {
   title       = "Header"
-  description = ""
+  description = "Headers Best Practices."
 
   children = [
     control.component_header_definition_unused
@@ -8,7 +8,8 @@ benchmark "header" {
 }
 
 control "component_header_definition_unused" {
-  title       = "Header should be used as reference somewhere"
-  description = ""
+  title       = "Component header definition should be used as reference somewhere"
+  description = "Components headers definitions should be referenced or removed from Open API definition."
+  severity    = "none"
   sql         = query.component_header_definition_unused.sql
 }
