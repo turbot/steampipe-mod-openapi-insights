@@ -1,4 +1,10 @@
-benchmark "security_scheme" {
+locals {
+  security_scheme_best_practices_common_tags = merge(local.openapi_insights_common_tags, {
+    service = "OpenAPI/SecurityScheme"
+  })
+}
+
+benchmark "security_scheme_best_practices" {
   title       = "Security Scheme Best Practices"
   description = "Best practices for security schemes."
 
@@ -12,6 +18,10 @@ benchmark "security_scheme" {
     control.component_security_scheme_api_key_not_exposed,
     control.security_scheme_with_no_invalid_oauth2_token_url
   ]
+
+  tags = merge(local.security_scheme_best_practices_common_tags, {
+    type = "Benchmark"
+  })
 }
 
 control "component_security_scheme_api_key_not_exposed" {

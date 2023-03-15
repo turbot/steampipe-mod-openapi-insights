@@ -1,4 +1,10 @@
-benchmark "response" {
+locals {
+  response_best_practices_common_tags = merge(local.openapi_insights_common_tags, {
+    service = "OpenAPI/Response"
+  })
+}
+
+benchmark "response_best_practices" {
   title       = "Response Best Practices"
   description = "Best practices for responses."
 
@@ -8,6 +14,10 @@ benchmark "response" {
     control.response_content_with_no_unknown_prefix,
     control.component_path_response_content_object_with_no_schema
   ]
+
+  tags = merge(local.response_best_practices_common_tags, {
+    type = "Benchmark"
+  })
 }
 
 control "components_response_definition_unused" {

@@ -1,4 +1,10 @@
-benchmark "server" {
+locals {
+  server_best_practices_common_tags = merge(local.openapi_insights_common_tags, {
+    service = "OpenAPI/Server"
+  })
+}
+
+benchmark "server_best_practices" {
   title       = "Server Best Practices"
   description = "Best practices for servers."
 
@@ -7,6 +13,10 @@ benchmark "server" {
     control.server_uses_https,
     control.path_server_uses_https
   ]
+
+  tags = merge(local.server_best_practices_common_tags, {
+    type = "Benchmark"
+  })
 }
 
 control "server_undefined" {

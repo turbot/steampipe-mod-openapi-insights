@@ -1,4 +1,10 @@
-benchmark "request_body" {
+locals {
+  request_body_best_practices_common_tags = merge(local.openapi_insights_common_tags, {
+    service = "OpenAPI/RequestBody"
+  })
+}
+
+benchmark "request_body_best_practices" {
   title       = "Request Body Best Practices"
   description = "Best practices for request bodies."
 
@@ -7,6 +13,10 @@ benchmark "request_body" {
     control.component_path_request_body_object_with_no_incorrect_media_type,
     control.component_path_request_body_content_object_with_no_schema
   ]
+
+  tags = merge(local.request_body_best_practices_common_tags, {
+    type = "Benchmark"
+  })
 }
 
 control "component_request_body_definition_unused" {

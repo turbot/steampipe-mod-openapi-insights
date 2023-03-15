@@ -1,10 +1,20 @@
-benchmark "parameter" {
+locals {
+  parameter_best_practices_common_tags = merge(local.openapi_insights_common_tags, {
+    service = "OpenAPI/Parameter"
+  })
+}
+
+benchmark "parameter_best_practices" {
   title       = "Parameter Best Practices"
   description = "Best practices for parameters."
 
   children = [
     control.component_parameter_definition_unused
   ]
+
+  tags = merge(local.parameter_best_practices_common_tags, {
+    type = "Benchmark"
+  })
 }
 
 control "component_parameter_definition_unused" {

@@ -1,10 +1,20 @@
-benchmark "path" {
+locals {
+  path_best_practices_common_tags = merge(local.openapi_insights_common_tags, {
+    service = "OpenAPI/Path"
+  })
+}
+
+benchmark "path_best_practices" {
   title       = "Path Best Practices"
   description = "Best practices for paths."
 
   children = [
     control.path_operation_basic_auth_with_no_cleartext_credentials
   ]
+
+  tags = merge(local.path_best_practices_common_tags, {
+    type = "Benchmark"
+  })
 }
 
 control "path_operation_basic_auth_with_no_cleartext_credentials" {

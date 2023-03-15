@@ -1,10 +1,20 @@
-benchmark "schema" {
+locals {
+  schema_best_practices_common_tags = merge(local.openapi_insights_common_tags, {
+    service = "OpenAPI/Schema"
+  })
+}
+
+benchmark "schema_best_practices" {
   title       = "Schema Best Practices"
   description = "Best practices for schema."
 
   children = [
     control.component_schema_not_with_both_read_only_and_write_only
   ]
+
+  tags = merge(local.schema_best_practices_common_tags, {
+    type = "Benchmark"
+  })
 }
 
 control "component_schema_not_with_both_read_only_and_write_only" {

@@ -1,6 +1,23 @@
-# OpenAPI Insights Mod for Steampipe
+---
+repository: "https://github.com/turbot/steampipe-mod-openapi-insights"
+---
 
-20+ checks covering best practices on OpenAPI specification files.
+# OpenAPI Insights Mod
+
+Run individual configuration, compliance and controls to validate best practices on OpenAPI specification files.
+
+## References
+
+[OpenAPI plugin](https://hub.steampipe.io/plugins/turbot/openapi) is a set of utility tables for steampipe to query attributes from OpenAPI specification file.
+
+[Steampipe](https://steampipe.io) is an open source CLI to instantly query cloud APIs using SQL.
+
+[Steampipe Mods](https://steampipe.io/docs/reference/mod-resources#mod) are collections of `named queries`, codified `controls` that can be used to test current configuration of your cloud resources against a desired configuration, and `dashboards` that organize and display key pieces of information.
+
+## Documentation
+
+- **[Benchmarks and controls →](https://hub.steampipe.io/mods/turbot/openapi_insights/controls)**
+- **[Dashboards →](https://hub.steampipe.io/mods/turbot/openapi_insights/dashboards)**
 
 ## Getting started
 

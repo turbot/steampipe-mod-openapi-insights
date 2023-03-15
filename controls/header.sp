@@ -1,10 +1,20 @@
-benchmark "header" {
+locals {
+  header_best_practices_common_tags = merge(local.openapi_insights_common_tags, {
+    service = "OpenAPI/Header"
+  })
+}
+
+benchmark "header_best_practices" {
   title       = "Header Best Practices"
   description = "Best practices for headers."
 
   children = [
     control.component_header_definition_unused
   ]
+
+  tags = merge(local.header_best_practices_common_tags, {
+    type = "Benchmark"
+  })
 }
 
 control "component_header_definition_unused" {
