@@ -23,7 +23,9 @@ Run individual configuration, compliance and controls to validate best practices
 
 ### Installation
 
-Download and install Steampipe (https://steampipe.io/downloads). Or use Brew:
+Download and install Steampipe (https://steampipe.io/downloads).
+
+Or use Brew:
 
 ```sh
 brew tap turbot/tap
@@ -51,9 +53,7 @@ Start your dashboard server to get started:
 steampipe dashboard
 ```
 
-By default, the dashboard interface will then be launched in a new browser
-window at https://localhost:9194. From here, you can view dashboards and
-reports, and run benchmarks by selecting one or searching for a specific one.
+By default, the dashboard interface will then be launched in a new browser window at http://localhost:9194. From here, you can view dashboards and reports, and run benchmarks by selecting one or searching for a specific one.
 
 Instead of running benchmarks in a dashboard, you can also run them within your
 terminal with the `steampipe check` command:
@@ -87,7 +87,7 @@ No credentials are required.
 
 If you have an idea for additional dashboards or controls, or just want to help maintain and extend this mod ([or others](https://github.com/topics/steampipe-mod)) we would love you to join the community and start contributing.
 
-- **[Join our Slack community →](https://steampipe.io/community/join)** and hang out with other Mod developers.
+- **[Join #steampipe on Slack →](https://turbot.com/community/join)** and hang out with other Mod developers.
 
 Please see the [contribution guidelines](https://github.com/turbot/steampipe/blob/main/CONTRIBUTING.md) and our [code of conduct](https://github.com/turbot/steampipe/blob/main/CODE_OF_CONDUCT.md). All contributions are subject to the [Apache 2.0 open source license](https://github.com/turbot/steampipe-mod-openapi-insights/blob/main/LICENSE).
 
