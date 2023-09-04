@@ -9,7 +9,9 @@ benchmark "path_best_practices" {
   description = "Best practices for paths."
 
   children = [
-    control.path_operation_basic_auth_with_no_cleartext_credentials
+    control.path_operation_basic_auth_with_no_cleartext_credentials,
+    control.path_operation_objects_produces_undefined,
+    control.path_operation_objects_consumes_undefined
   ]
 
   tags = merge(local.path_best_practices_common_tags, {
@@ -68,5 +70,69 @@ control "path_operation_basic_auth_with_no_cleartext_credentials" {
     from
       openapi_info as i
       left join aggregated_result as s on i.path = s.path;
+  EOQ
+}
+
+control "path_operation_objects_produces_undefined" {
+  title       = "Path operation objects should have produces field defined for get operations"
+  description = "Ensure that operation objects have 'produces' field defined for GET operations - version 2.0 files."
+  severity    = "high"
+  sql         = <<-EOQ
+    with path_operation_objects_produces_undefined as (
+      select
+        path,
+        api_path
+      from
+        openapi_v2_path
+      where
+        produces is not null
+        and method = 'GET'
+    )
+    select
+      i.title as resource,
+      case
+        when s.path is null then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when s.path is null then i.title || ' Path operation objects does have produces field defined for get operations.'
+        else i.title || ' - ' || s.api_path || ' Path operation objects does not have produces field defined for get operations.'
+      end as reason,
+      i.path
+    from
+      openapi_v2_info as i
+      left join path_operation_objects_produces_undefined as s on i.path = s.path;
+  EOQ
+}
+
+control "path_operation_objects_consumes_undefined" {
+  title       = "Path operation objects should have consumes field defined for put operations"
+  description = "Ensure that operation objects have 'consumes' field defined for PUT operations - version 2.0 files."
+  severity    = "high"
+  sql         = <<-EOQ
+    with path_operation_objects_consumes_undefined as (
+      select
+        path,
+        api_path
+      from
+        openapi_v2_path
+      where
+        consumes is not null
+        and method = 'PUT'
+    )
+    select
+      i.title as resource,
+      case
+        when s.path is null then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when s.path is null then i.title || ' Path operation objects does have consumes field defined for put operations.'
+        else i.title || ' - ' || s.api_path || ' Path operation objects does not have consumes field defined for put operations.'
+      end as reason,
+      i.path
+    from
+      openapi_v2_info as i
+      left join path_operation_objects_consumes_undefined as s on i.path = s.path;
   EOQ
 }
