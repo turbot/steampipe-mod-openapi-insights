@@ -1,6 +1,23 @@
-# OpenAPI Insights Mod for Steampipe
+---
+repository: "https://github.com/turbot/steampipe-mod-openapi-insights"
+---
 
-An OpenAPI tool that has 20+ checks covering best practices on OpenAPI specification files.
+# OpenAPI Insights Mod
+
+Run individual configuration, compliance and controls to validate best practices on OpenAPI specification files.
+
+## References
+
+[OpenAPI plugin](https://hub.steampipe.io/plugins/turbot/openapi) is a set of utility tables for steampipe to query attributes from OpenAPI specification file.
+
+[Steampipe](https://steampipe.io) is an open source CLI to instantly query cloud APIs using SQL.
+
+[Steampipe Mods](https://steampipe.io/docs/reference/mod-resources#mod) are collections of `named queries`, codified `controls` that can be used to test current configuration of your cloud resources against a desired configuration, and `dashboards` that organize and display key pieces of information.
+
+## Documentation
+
+- **[Benchmarks and controls →](https://hub.steampipe.io/mods/turbot/openapi_insights/controls)**
+- **[Dashboards →](https://hub.steampipe.io/mods/turbot/openapi_insights/dashboards)**
 
 ## Getting started
 
@@ -38,7 +55,8 @@ steampipe dashboard
 
 By default, the dashboard interface will then be launched in a new browser window at http://localhost:9194. From here, you can view dashboards and reports, and run benchmarks by selecting one or searching for a specific one.
 
-Instead of running benchmarks in a dashboard, you can also run them within your terminal with the `steampipe check` command:
+Instead of running benchmarks in a dashboard, you can also run them within your
+terminal with the `steampipe check` command:
 
 Run all benchmarks:
 
@@ -58,15 +76,12 @@ Run a specific control:
 steampipe check control.components_response_definition_unused
 ```
 
-Different output formats are also available, for more information please see [Output Formats](https://steampipe.io/docs/reference/cli/check#output-formats).
+Different output formats are also available, for more information please see
+[Output Formats](https://steampipe.io/docs/reference/cli/check#output-formats).
 
 ### Credentials
 
 No credentials are required.
-
-### Configuration
-
-No extra configuration is required.
 
 ## Contributing
 
